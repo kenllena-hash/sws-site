@@ -1,0 +1,33 @@
+name: Deploy SWS to Namecheap cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sws-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy website files to cPanel
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          # Do not preserve Unix owner/group on shared hosting.
+          # Do not use --delete: it could remove files already on the hosting account.
+          ARGS: "-rlDzvc"
+          EXCLUDE: "/.git/, /.github/, /.gitignore, /.env, /.env.*, /api/config.local.php, /api/config.local.php.example, /sws_db.sql, /DEPLOYMENT_README.txt"

@@ -8,25 +8,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
 <div class="app dashboard">
     <header class="topbar">
-        <span class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span><span><span class="brand-name">SWS</span><span class="brand-sub">Super Admin</span></span></span>
+        <span class="brand"><span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span><span><span class="brand-name">SWS</span><span class="brand-sub">Super Admin</span></span></span>
         <button class="btn btn-ghost-on-dark" onclick="logout()">Logout</button>
     </header>
     <aside class="sidebar">
-        <span class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span><span><span class="brand-name">SWS</span><span class="brand-sub">Super Admin</span></span></span>
+        <span class="brand"><span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span><span><span class="brand-name">SWS</span><span class="brand-sub">Super Admin</span></span></span>
         <nav aria-label="Super admin navigation">
-            <button data-nav="dashboard" onclick="nav('dashboard')" class="active" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span class="lbl-long">Dashboard</span></button>
-            <button data-nav="users" onclick="nav('users')"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.4c2.2.7 3.5 2.6 3.5 5.6"/></svg><span class="lbl-long">Manage Users</span></button>
-            <button data-nav="createuser" onclick="nav('createuser')"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c0-4 3.4-6.5 7.5-6.5M18 14v6M15 17h6"/></svg><span class="lbl-long">Create User</span></button>
-            <button data-nav="complaints" onclick="nav('complaints')"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg><span class="lbl-long">All Complaints</span></button>
-            <button data-nav="announce" onclick="nav('announce')"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4a1 1 0 0 0 1 1h3l8 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span class="lbl-long">Post Announcement</span></button>
-            <button data-nav="profile" onclick="nav('profile')"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="lbl-long">Profile</span></button>
+            <button data-nav="dashboard" onclick="nav('dashboard')" class="active" aria-current="page"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span class="lbl-long">Dashboard</span></button>
+            <button data-nav="users" onclick="nav('users')"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.4c2.2.7 3.5 2.6 3.5 5.6"/></svg><span class="lbl-long">Manage Users</span></button>
+            <button data-nav="createuser" onclick="nav('createuser')"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c0-4 3.4-6.5 7.5-6.5M18 14v6M15 17h6"/></svg><span class="lbl-long">Create User</span></button>
+            <button data-nav="complaints" onclick="nav('complaints')"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg><span class="lbl-long">All Complaints</span></button>
+            <button data-nav="announce" onclick="nav('announce')"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4a1 1 0 0 0 1 1h3l8 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span class="lbl-long">Post Announcement</span></button>
+            <button data-nav="profile" onclick="nav('profile')"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="lbl-long">Profile</span></button>
         </nav>
-        <button class="nav-logout" onclick="logout()"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg><span>Logout</span></button>
+        <button class="nav-logout" onclick="logout()"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg><span>Logout</span></button>
     </aside>
     <main class="main">
         <section id="dashboard" class="page active">
@@ -141,7 +141,7 @@
         </section>
     </main>
 </div>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=2"></script>
 <script>
     const user = JSON.parse(sessionStorage.getItem('sws_user') || 'null');
     if (!user || user.role !== 'superadmin') {

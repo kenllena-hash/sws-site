@@ -1,118 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>SWS - Create Account</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        body {
-            background: linear-gradient(180deg, var(--sky) 0%, var(--foam) 50%, #ffffff 100%);
-            min-height: 100vh;
-        }
-        .auth-container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 40px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .auth-wrapper {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            background: #fff;
-            border-radius: var(--r-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-        .auth-brand {
-            background: linear-gradient(160deg, var(--aqua) 0%, var(--cyan) 100%);
-            color: #fff;
-            padding: 48px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-        .auth-brand::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(224,242,254,0.2) 0%, transparent 45%);
-            pointer-events: none;
-        }
-        .auth-brand > * { position: relative; z-index: 1; }
-        .auth-brand h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
-        .auth-brand p  { font-size: 15px; color: rgba(255,255,255,0.9); margin-bottom: 4px; }
-        .auth-brand span { font-size: 12.5px; color: rgba(255,255,255,0.65); }
-        .brand-footer {
-            font-size: 12.5px;
-            color: rgba(255,255,255,0.7);
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
-            margin-top: 40px;
-            line-height: 1.65;
-        }
-        .form-panel { padding: 40px 36px; max-height: 92vh; overflow-y: auto; }
-        .form-panel h2 { font-size: 22px; font-weight: 700; color: var(--deep); margin-bottom: 6px; letter-spacing: -0.02em; }
-        .form-panel .subtitle { font-size: 14px; color: var(--ink-4); margin-bottom: 24px; line-height: 1.55; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .message { display: none; padding: 12px 14px; margin-bottom: 16px; border-radius: var(--r-sm); font-size: 13px; line-height: 1.5; font-weight: 500; }
-        .message.error   { display: block; background: var(--danger-soft); color: var(--danger); border: 1px solid #fecaca; }
-        .message.success { display: block; background: var(--success-soft); color: var(--success); border: 1px solid #a7f3d0; }
-        .show-password {
-            position: absolute;
-            right: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 32px;
-            padding: 0 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
-            color: var(--ink-4);
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .show-password:hover { background: var(--sky); color: var(--ocean); }
-        .switch-link, .back-link { text-align: center; font-size: 14px; color: var(--ink-4); margin-top: 16px; }
-        .switch-link a, .back-link a { color: var(--ocean); font-weight: 600; text-decoration: none; }
-        .switch-link a:hover, .back-link a:hover { text-decoration: underline; }
-        @media (max-width: 860px) {
-            .auth-wrapper { grid-template-columns: 1fr; max-width: 480px; }
-            .auth-brand { padding: 32px 28px; }
-            .auth-brand h1 { font-size: 32px; }
-            .brand-footer { display: none; }
-            .form-panel { padding: 32px 26px; max-height: none; }
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a2f3a">
+<title>SWS — Create account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
 <div class="auth-container">
     <div class="auth-wrapper">
         <div class="auth-brand">
             <div>
-                <h1>SWS</h1>
+                <a class="brand" href="index.html" aria-label="SWS home">
+                    <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span>
+                    <h1 class="brand-name">SWS</h1>
+                </a>
                 <p>Join Sharia Water Services</p>
-                <span>Buina, Fittoa</span>
+                <span class="loc">Buina, Fittoa</span>
             </div>
-            <div class="brand-footer">
-                Create your account to submit complaints, track their progress, and stay informed about water service updates in your area.
-            </div>
+            <div class="brand-footer">Create your account to submit complaints, track their progress, and stay informed about water service updates in your area.</div>
         </div>
-
         <div class="form-panel">
             <h2>Create your account</h2>
             <p class="subtitle">Takes less than a minute. All fields are required.</p>
@@ -174,7 +85,6 @@
         </div>
     </div>
 </div>
-
 <script>
 const API = "api/";
 

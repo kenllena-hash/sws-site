@@ -1,98 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="SWS — Water Outage Notification and Complaint System">
-    <meta name="theme-color" content="#0c2d48">
-    <title>SWS — Water Outage and Complaint System</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SWS — report water problems, track complaints, and read outage announcements for Buina, Fittoa.">
+<meta name="theme-color" content="#0a2f3a">
+<title>SWS — Water Outage and Complaint System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
-    <div class="logo">
-        <h1>SWS</h1>
-        <p>Water Outage Notification and Complaint System</p>
+<header class="site-header">
+    <div class="inner">
+        <a class="brand" href="index.html" onclick="showPage('home');return false;" aria-label="SWS home">
+            <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-1.2 3.4-6 7.6-6 12a6 6 0 0 0 12 0c0-4.4-4.8-8.6-6-12z"/></svg></span>
+            <span><span class="brand-name">SWS</span><span class="brand-sub">Water Outage and Complaint System</span></span>
+        </a>
+        <nav id="publicNav" class="site-nav" aria-label="Public navigation">
+            <button class="btn btn-text nav-text" onclick="showPage('home')">Home</button>
+            <button class="btn btn-text" onclick="window.location.href='login.html'">Sign in</button>
+            <button class="btn" onclick="window.location.href='register.html'">Create account</button>
+        </nav>
+        <nav id="privateNav" class="site-nav" style="display:none;" aria-label="User navigation">
+            <span id="welcomeUser" class="welcome-user"></span>
+            <button class="btn btn-text nav-text" onclick="showPage('dashboard')">Dashboard</button>
+            <button class="btn btn-text nav-text" onclick="showPage('profile')">Profile</button>
+            <button class="btn btn-ghost" onclick="confirmLogout()">Sign out</button>
+        </nav>
     </div>
-    <nav id="publicNav" aria-label="Public navigation">
-        <button onclick="showPage('home')">Home</button>
-        <button onclick="window.location.href='login.html'">Sign in</button>
-        <button onclick="window.location.href='register.html'">Create account</button>
-    </nav>
-    <nav id="privateNav" style="display:none;" aria-label="User navigation">
-        <span id="welcomeUser" class="welcome-user"></span>
-        <button onclick="showPage('dashboard')">Dashboard</button>
-        <button onclick="showPage('profile')">Profile</button>
-        <button onclick="confirmLogout()">Sign out</button>
-    </nav>
 </header>
 
 <section id="home" class="page active">
     <div class="hero">
-        <div class="hero-content">
-            <h2>SWS</h2>
-            <h3>Water Outage Notification and Complaint System</h3>
-            <p>A web-based system for Buina residents to submit water-related complaints, monitor complaint status, and receive water outage announcements.</p>
-            <button class="btn btn-primary" onclick="window.location.href='register.html'">Get started</button>
-            <button class="btn btn-ghost" onclick="window.location.href='login.html'">I already have an account</button>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h2>SWS</h2>
+                <h3>Water Outage Notification and Complaint System</h3>
+                <p class="hero-lead">A web-based system for Buina residents to submit water-related complaints, monitor complaint status, and receive water outage announcements.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-on-dark" onclick="window.location.href='register.html'">Get started</button>
+                    <button class="btn btn-ghost-on-dark" onclick="window.location.href='login.html'">I already have an account</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="disclaimer">
-        <strong>System Notice</strong><br>
-        Sharia Water Services (SWS) — Buina, Fittoa. Submit water-related complaints, track their progress, and receive outage announcements.
-        <br><br>
-        <a href="#" onclick="showPage('agreement');return false;">Read User Agreement and Terms of Use →</a>
-    </div>
+    <aside class="disclaimer" role="note" aria-label="Academic project disclaimer">
+        <p><strong>Disclaimer:</strong> This website is created for demonstration and academic purposes only as part of an SIA subject project. It is not a real company, official service, registered business, or commercial website. No claims are made regarding actual business operations, legal standing, or real-world services.</p>
+    </aside>
 
-    <div class="container">
-        <div class="title">
+    <div class="section">
+        <div class="section-head">
             <h2>Everything you need</h2>
             <p>Services available in the SWS system</p>
         </div>
-        <div class="feature-grid">
-            <div class="feature"><h3>Complaint submission</h3><p>Report water-related issues directly through the website.</p></div>
-            <div class="feature"><h3>Outage notifications</h3><p>Stay informed about scheduled and emergency water outages.</p></div>
-            <div class="feature"><h3>Complaint tracking</h3><p>Check the current status and progress of your submitted complaints.</p></div>
-            <div class="feature"><h3>Reports</h3><p>SWS personnel can view complaint records and generate basic reports.</p></div>
-        </div>
+        <ul class="services">
+            <li class="service"><span class="service-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><h3>Complaint submission</h3><p>Report water-related issues directly through the website.</p></li>
+            <li class="service"><span class="service-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><h3>Outage notifications</h3><p>Stay informed about scheduled and emergency water outages.</p></li>
+            <li class="service"><span class="service-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Complaint tracking</h3><p>Check the current status and progress of your submitted complaints.</p></li>
+            <li class="service"><span class="service-ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Reports</h3><p>SWS personnel can view complaint records and generate basic reports.</p></li>
+        </ul>
     </div>
 
-    <footer>
-        Sharia Water Services (SWS) · Buina, Fittoa
-        <br>
-        <a href="#" onclick="showPage('agreement');return false;">User Agreement and Terms of Use</a>
+    <footer class="site-footer">
+        <div class="inner">
+            <span><strong>Sharia Water Services (SWS)</strong> · Buina, Fittoa</span>
+            <a href="#" onclick="showPage('agreement');return false;">User Agreement and Terms of Use</a>
+        </div>
     </footer>
 </section>
 
 <section id="agreement" class="page">
-    <div class="container">
-        <div class="title">
-            <h2>User Agreement and Terms of Use</h2>
-            <p>Please read carefully before using the SWS system.</p>
-        </div>
-        <div class="panel" style="line-height:1.75;font-size:14px;max-width:800px;margin:0 auto;">
+    <div class="doc">
+        <h2>User Agreement and Terms of Use</h2>
+        <p class="lead">Please read carefully before using the SWS system.</p>
+        <div class="doc-body">
             <h3>1. Purpose</h3>
             <p>This system allows residents of Buina, Fittoa to submit water-related complaints and receive outage notifications from Sharia Water Services (SWS).</p>
-            <h3 style="margin-top:20px;">2. User responsibilities</h3>
-            <ul style="margin-left:20px;">
+            <h3>2. User responsibilities</h3>
+            <ul>
                 <li>Provide accurate and truthful information when registering and submitting complaints.</li>
                 <li>Do not submit false, harmful, or abusive content.</li>
                 <li>Keep your login credentials secure.</li>
                 <li>Use the system only for legitimate water service concerns.</li>
             </ul>
-            <h3 style="margin-top:20px;">3. Complaint handling</h3>
+            <h3>3. Complaint handling</h3>
             <p>SWS will review and respond to complaints within reasonable timeframes. Status updates will be reflected in your dashboard.</p>
-            <h3 style="margin-top:20px;">4. Data privacy</h3>
+            <h3>4. Data privacy</h3>
             <p>Your personal information will be used only for processing complaints and sending outage notifications. We do not share your data with third parties without your consent.</p>
-            <h3 style="margin-top:20px;">5. Limitation of liability</h3>
+            <h3>5. Limitation of liability</h3>
             <p>SWS is not liable for delays or issues caused by circumstances beyond its control.</p>
-            <h3 style="margin-top:20px;">6. Acceptance of terms</h3>
+            <h3>6. Acceptance of terms</h3>
             <p>By registering or using this system, you acknowledge that you have read, understood, and agreed to these terms.</p>
-            <br>
-            <button class="btn btn-blue" onclick="window.location.href='register.html'">Back to Register</button>
-            <button class="btn" style="background:var(--mist);color:var(--ink);border:1px solid var(--line);margin-left:10px;" onclick="showPage('home')">Back to Home</button>
+            <div class="doc-actions">
+                <button class="btn" onclick="window.location.href='register.html'">Back to Register</button>
+                <button class="btn btn-ghost" onclick="showPage('home')">Back to Home</button>
+            </div>
         </div>
     </div>
 </section>

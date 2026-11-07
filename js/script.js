@@ -80,7 +80,7 @@ function applyLoggedInUI() {
     const pub = document.getElementById("publicNav");
     const priv = document.getElementById("privateNav");
     if (pub) pub.style.display = "none";
-    if (priv) priv.style.display = "block";
+    if (priv) priv.style.display = "flex";
     const nameEl = document.getElementById("welcomeUser");
     if (nameEl && currentUser) {
         const first = (currentUser.full_name || "").split(" ")[0];
@@ -91,7 +91,7 @@ function applyLoggedInUI() {
 function applyLoggedOutUI() {
     const pub = document.getElementById("publicNav");
     const priv = document.getElementById("privateNav");
-    if (pub) pub.style.display = "block";
+    if (pub) pub.style.display = "flex";
     if (priv) priv.style.display = "none";
 }
 

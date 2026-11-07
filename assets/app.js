@@ -282,7 +282,7 @@ async function loadComplaints() {
         const d = await res.json();
         tb.innerHTML = '';
         if (!d.success || !d.complaints.length) {
-            tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted" style="padding:32px;">No complaints yet.</td></tr>';
+            tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No complaints yet.</td></tr>';
             return;
         }
         d.complaints.forEach(c => {
@@ -296,7 +296,7 @@ async function loadComplaints() {
             </tr>`;
         });
     } catch (e) {
-        tb.innerHTML = '<tr><td colspan="5" class="text-center" style="color:var(--danger);padding:32px;">Failed to load.</td></tr>';
+        tb.innerHTML = '<tr><td colspan="5" class="text-center" style="color:var(--danger)">Failed to load.</td></tr>';
     }
 }
 
@@ -322,7 +322,7 @@ async function loadAnnouncements() {
         const d = await res.json();
         box.innerHTML = '';
         if (!d.success || !d.announcements.length) {
-            box.innerHTML = '<p class="text-muted" style="padding:12px 0;font-size:13.5px;">No announcements yet.</p>';
+            box.innerHTML = '<p class="text-muted">No announcements yet.</p>';
             return;
         }
         d.announcements.forEach(a => {
@@ -343,7 +343,7 @@ async function loadDashboardNotifs() {
         const d = await res.json();
         box.innerHTML = '';
         if (!d.success || !d.announcements.length) {
-            box.innerHTML = '<p class="text-muted mb-0" style="font-size:13.5px;">No announcements yet.</p>';
+            box.innerHTML = '<p class="text-muted">No announcements yet.</p>';
             return;
         }
         d.announcements.slice(0, 3).forEach(a => {
@@ -381,11 +381,9 @@ async function loadAdminStats() {
         ];
 
         box.innerHTML = cards.map(([label, value]) => `
-            <div class="col-6 col-md-3">
-                <div class="stat-box">
-                    <h6>${label}</h6>
-                    <strong>${value}</strong>
-                </div>
+            <div class="stat-box${/pending/i.test(label) ? ' is-wait' : /resolved/i.test(label) ? ' is-ok' : ''}">
+                <h6>${label}</h6>
+                <strong>${value}</strong>
             </div>`).join('');
     } catch (_) {}
 }
@@ -399,9 +397,9 @@ async function loadAdminComplaints() {
         const res = await fetch(`${API}complaints.php?user_id=${u.id}&role=${u.role}`);
         const d = await res.json();
         tb.innerHTML = '';
-        if (!d.success) { tb.innerHTML = `<tr><td colspan="6" class="text-center" style="color:var(--danger);padding:32px;">${d.message}</td></tr>`; return; }
+        if (!d.success) { tb.innerHTML = `<tr><td colspan="6" class="text-center" style="color:var(--danger)">${d.message}</td></tr>`; return; }
         if (!d.complaints.length) {
-            tb.innerHTML = '<tr><td colspan="6" class="text-center text-muted" style="padding:32px;">No complaints yet.</td></tr>';
+            tb.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No complaints yet.</td></tr>';
             return;
         }
         d.complaints.forEach(c => {
@@ -413,15 +411,15 @@ async function loadAdminComplaints() {
                 <td>${escapeHtml(c.location)}</td>
                 <td><span class="status ${cls}">${c.status}</span></td>
                 <td>
-                    <select class="form-select form-select-sm d-inline-block" style="width:130px;font-size:13px;" id="status-${c.id}">
+                    <select class="form-select form-select-sm" aria-label="Complaint status" id="status-${c.id}">
                         ${['Pending','In Progress','Resolved'].map(s => `<option ${s === c.status ? 'selected' : ''}>${s}</option>`).join('')}
                     </select>
-                    <button class="btn btn-blue" style="padding:5px 12px;font-size:12.5px;" onclick="updateComplaint(${c.id}, this)">Save</button>
+                    <button class="btn btn-sm" onclick="updateComplaint(${c.id}, this)">Save</button>
                 </td>
             </tr>`;
         });
     } catch (_) {
-        tb.innerHTML = '<tr><td colspan="6" class="text-center" style="color:var(--danger);padding:32px;">Failed to load.</td></tr>';
+        tb.innerHTML = '<tr><td colspan="6" class="text-center" style="color:var(--danger)">Failed to load.</td></tr>';
     }
 }
 
@@ -479,18 +477,18 @@ async function loadAdminAnnouncements() {
         const d = await res.json();
         box.innerHTML = '';
         if (!d.success || !d.announcements.length) {
-            box.innerHTML = '<p class="text-muted" style="font-size:13.5px;">No announcements.</p>';
+            box.innerHTML = '<p class="text-muted">No announcements.</p>';
             return;
         }
         d.announcements.forEach(a => {
             box.innerHTML += `<div class="notification">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-                    <div style="flex:1;min-width:0;">
+                <div class="notice-row">
+                    <div class="notice-main">
                         <h5>${escapeHtml(a.title)}</h5>
                         <p>${escapeHtml(a.message)}</p>
                         <small>${a.type} · ${escapeHtml(a.posted_by_name || 'System')} · ${new Date(a.posted_at).toLocaleString()}</small>
                     </div>
-                    <button class="btn" style="padding:5px 10px;font-size:12px;background:var(--danger-soft);color:var(--danger);border:1px solid #fecaca;" onclick="deleteAnn(${a.id})">Delete</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteAnn(${a.id})">Delete</button>
                 </div>
             </div>`;
         });
@@ -523,21 +521,21 @@ async function loadUsers() {
         const res = await fetch(`${API}admin_users.php?user_id=${u.id}`);
         const d = await res.json();
         tb.innerHTML = '';
-        if (!d.success) { tb.innerHTML = `<tr><td colspan="5" class="text-center" style="color:var(--danger);padding:32px;">${d.message}</td></tr>`; return; }
+        if (!d.success) { tb.innerHTML = `<tr><td colspan="5" class="text-center" style="color:var(--danger)">${d.message}</td></tr>`; return; }
         d.users.forEach(x => {
             const roleCls = `role-${x.role}`;
             tb.innerHTML += `<tr>
-                <td><strong>${escapeHtml(x.full_name)}</strong><br><small class="text-muted">${escapeHtml(x.email)}</small></td>
+                <td><strong>${escapeHtml(x.full_name)}</strong></td>
                 <td>${escapeHtml(x.email)}</td>
                 <td><span class="badge-role ${roleCls}">${x.role}</span></td>
-                <td>${x.is_active == 1 ? '<span style="color:var(--success);">Active</span>' : '<span style="color:var(--ink-4);">Inactive</span>'}</td>
+                <td>${x.is_active == 1 ? '<span class="status resolved">Active</span>' : '<span class="status">Inactive</span>'}</td>
                 <td>
-                    <select class="form-select form-select-sm d-inline-block" style="width:120px;font-size:12.5px;" id="role-${x.id}">
+                    <select class="form-select form-select-sm" aria-label="Role" id="role-${x.id}">
                         ${['resident','admin','superadmin'].map(r => `<option ${r === x.role ? 'selected' : ''}>${r}</option>`).join('')}
                     </select>
-                    <button class="btn btn-blue" style="padding:5px 10px;font-size:12px;" onclick="changeRole(${x.id}, this)">Set</button>
-                    <button class="btn" style="padding:5px 10px;font-size:12px;background:var(--warning-soft);color:var(--warning);border:1px solid #fcd34d;" onclick="toggleActive(${x.id}, this)">Toggle</button>
-                    <button class="btn" style="padding:5px 10px;font-size:12px;background:var(--danger-soft);color:var(--danger);border:1px solid #fecaca;" onclick="deleteUser(${x.id})">Delete</button>
+                    <button class="btn btn-sm" onclick="changeRole(${x.id}, this)">Set</button>
+                    <button class="btn btn-sm btn-warn" onclick="toggleActive(${x.id}, this)">Toggle</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteUser(${x.id})">Delete</button>
                 </td>
             </tr>`;
         });
@@ -630,7 +628,7 @@ async function loadAllComplaintsSA() {
         tb.innerHTML = '';
         if (!d.success) return;
         if (!d.complaints.length) {
-            tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted" style="padding:32px;">No complaints yet.</td></tr>';
+            tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No complaints yet.</td></tr>';
             return;
         }
         d.complaints.forEach(c => {
@@ -641,10 +639,10 @@ async function loadAllComplaintsSA() {
                 <td>${escapeHtml(c.issue_type)}</td>
                 <td><span class="status ${cls}">${c.status}</span></td>
                 <td>
-                    <select class="form-select form-select-sm d-inline-block" style="width:130px;font-size:13px;" id="sa-status-${c.id}">
+                    <select class="form-select form-select-sm" aria-label="Complaint status" id="sa-status-${c.id}">
                         ${['Pending','In Progress','Resolved'].map(s => `<option ${s === c.status ? 'selected' : ''}>${s}</option>`).join('')}
                     </select>
-                    <button class="btn btn-blue" style="padding:5px 12px;font-size:12.5px;" onclick="updateComplaintSA(${c.id}, this)">Save</button>
+                    <button class="btn btn-sm" onclick="updateComplaintSA(${c.id}, this)">Save</button>
                 </td>
             </tr>`;
         });
@@ -694,3 +692,29 @@ async function postSuperAnnouncement() {
     } catch (_) {}
     finally { setBtnLoading(btn, false, 'Post & Broadcast'); }
 }
+
+/* ============================================================
+   Table cells get data-label from their header, so rows can
+   stack as labelled cards on small screens (see styles.css).
+   ============================================================ */
+(function () {
+    function label(tbody) {
+        const table = tbody.closest('table');
+        if (!table) return;
+        const heads = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+        tbody.querySelectorAll('tr').forEach(tr => {
+            Array.from(tr.children).forEach((td, i) => {
+                if (td.colSpan > 1 || td.hasAttribute('data-label')) return;
+                if (heads[i]) td.setAttribute('data-label', heads[i]);
+            });
+        });
+    }
+    function start() {
+        document.querySelectorAll('.table-wrap tbody').forEach(tb => {
+            new MutationObserver(() => label(tb)).observe(tb, { childList: true });
+            label(tb);
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+})();
